@@ -1,24 +1,33 @@
 package com.example.assignmateguide
 
-import androidx.test.platform.app.InstrumentationRegistry
-import androidx.test.ext.junit.runners.AndroidJUnit4
-
+import androidx.compose.ui.test.hasTestTag
+import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.onNodeWithContentDescription
+import androidx.compose.ui.test.onNodeWithText
+import androidx.compose.ui.test.performClick
+import androidx.compose.ui.test.performTextInput
+import org.junit.Rule
 import org.junit.Test
-import org.junit.runner.RunWith
 
-import org.junit.Assert.*
+class ExampleUnitTest {
 
-/**
- * Instrumented test, which will execute on an Android device.
- *
- * See [testing documentation](http://d.android.com/tools/testing).
- */
-@RunWith(AndroidJUnit4::class)
-class ExampleInstrumentedTest {
+    @get:Rule
+    val composeTestRule = createComposeRule()
+
     @Test
-    fun useAppContext() {
-        // Context of the app under test.
-        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.example.assignmateguide", appContext.packageName)
+    fun testTypingAndScreenNavigation() {
+
+        composeTestRule.setContent {
+            MyApp()
+        }
+
+        composeTestRule.onNodeWithText("add/edit task").performClick()
+
+        composeTestRule.onNode(hasTestTag("title_input")).performTextInput("Testing Input")
+
+        composeTestRule.onNodeWithContentDescription("Save").performClick()
+
+        composeTestRule.onNodeWithText("Diego Lozano").assertIsDisplayed()
     }
 }
