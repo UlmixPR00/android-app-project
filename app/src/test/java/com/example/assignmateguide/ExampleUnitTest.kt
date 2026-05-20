@@ -1,17 +1,38 @@
 package com.example.assignmateguide
 
 import org.junit.Test
-
 import org.junit.Assert.*
 
-/**
- * Example local unit test, which will execute on the development machine (host).
- *
- * See [testing documentation](http://d.android.com/tools/testing).
- */
+
 class ExampleUnitTest {
+
     @Test
-    fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
+    fun testValidTaskTitle_returnsTrue() {
+
+        val inputTitle = "Finish Homework"
+
+
+        val expectedOutput = true
+
+
+        val actualOutput = TaskValidator.isValidTaskTitle(inputTitle)
+
+
+        assertEquals(expectedOutput, actualOutput)
+    }
+
+    @Test
+    fun testEmptyTaskTitle_returnsFalse() {
+
+        val inputTitle = ""
+
+
+        val expectedOutput = false
+
+
+        val actualOutput = TaskValidator.isValidTaskTitle(inputTitle)
+
+
+        assertEquals(expectedOutput, actualOutput)
     }
 }
