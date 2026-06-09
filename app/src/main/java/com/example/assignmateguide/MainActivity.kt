@@ -1,11 +1,11 @@
 package com.example.assignmateguide
 
+
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -20,7 +20,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -34,14 +33,27 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.Bullet
-import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.assignmateguide.ui.theme.AssignMateGuideTheme  //***change this to your theme name if different
-
+import com.example.assignmateguide.ui.theme.AssignMateGuideTheme
+import com.example.assignmateguide.ui.theme.Darkblue
+import com.example.assignmateguide.ui.theme.Lightblue
+import com.example.assignmateguide.ui.theme.Navyblue
+import com.example.assignmateguide.ui.theme.VeryLightblue
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowDropDown
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.AssignmentInd
+import androidx.compose.material.icons.filled.AssignmentLate
+import androidx.compose.material.icons.filled.CalendarMonth
+import androidx.compose.material.icons.filled.CheckCircle
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.DateRange
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.sp
+import com.example.assignmateguide.ui.theme.red
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,7 +61,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
 
         setContent {
-            AssignMateGuideTheme(){  //***change this to your theme name if different
+            AssignMateGuideTheme(){
                 MyApp()
             }
         }
@@ -93,37 +105,38 @@ fun HomeScreen(
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.fillMaxWidth().background(Color(0xFFD1E1FF)).border(1.dp, Color.Black)
+            modifier = Modifier.fillMaxWidth().background(VeryLightblue).border(1.dp, Color.Black)
         ){
             Box(
-                modifier =Modifier.size(100.dp).background(Color(0xFF89AFFA)),
+                modifier =Modifier.size(100.dp).background(Darkblue),
                 contentAlignment = Alignment.Center
             ){
-            Image(
-                painter = painterResource(id = R.drawable.home_symbol),
-                contentDescription = "homesymbol",
-                modifier = Modifier.size(100.dp)
-            ) }
-            Spacer(modifier = Modifier.padding(start = 16.dp))
+                Icon(
+                    imageVector = Icons.Filled.Home,
+                    contentDescription = "Home",
+                    modifier = Modifier.size(100.dp)
+                )
+            }
+            Spacer(modifier = Modifier.width(16.dp))
             Column {
                 Text(
                     text = "Diego Lozano",
                     style = MaterialTheme.typography.headlineMedium,
                 )
-
-
                 Text(
                     text = "NLU",
                     style = MaterialTheme.typography.headlineMedium
                 )
             }
         }
+
 /* break ///////////////////////////////////////////// */
+
         Spacer(modifier = Modifier.height(16.dp))
 
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.background(Color(0xFFD1E1FF)).
+            modifier = Modifier.background(VeryLightblue).
             border(1.5.dp, Color.Black).
             padding(horizontal = 16.dp, vertical = 8.dp)
         ) {
@@ -133,52 +146,162 @@ fun HomeScreen(
                 style = MaterialTheme.typography.headlineSmall,
                 color = Color.Black
             )
-                Spacer(modifier = Modifier.width(8.dp))
-            Image(
-                    painter = painterResource(id = R.drawable.warning_icon),
-                    contentDescription = "urgent",
-                    modifier = Modifier.size(24.dp)
-                )
-
+            Spacer(modifier = Modifier.width(8.dp))
+            Icon(
+                imageVector = Icons.Filled.AssignmentLate,
+                contentDescription ="alert",
+                modifier = Modifier.size(30.dp),
+                tint = red
+            )
         }
-        Column{
-            val bullet1 = Bullet.Default.copy(shape = CircleShape)
+        Column(
+            verticalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
 
             Text(
-                style = MaterialTheme.typography.headlineSmall,
-                text =  buildAnnotatedString {
-                    withBulletList(bullet = bullet1) {
-                        withBulletListItem { append("Complete Quiz 5")}
-                        withBulletListItem { append("Milestone 2") }
-                        withBulletListItem { append("Discussion 4") }
-                    }
-                }
+                text = "• Complete Quiz 5",
+                style = MaterialTheme.typography.headlineSmall
             )
 
+            Text(
+                text = "• Milestone 2",
+                style = MaterialTheme.typography.headlineSmall
+            )
 
-
+            Text(
+                text = "• Discussion 4",
+                style = MaterialTheme.typography.headlineSmall
+            )
         }
-
-
-
         Spacer(modifier = Modifier.height(24.dp))
+
 /* break //////////////////////////////////////////////// */
 
-        Button(onClick = onNavigateToSecondScreen,
-            colors = ButtonDefaults.buttonColors(Color(0xFF89AFFA)),
-            border= BorderStroke(2.dp,Color.Black))
-
-        {
-
-            Image(
-                painter = painterResource(id = R.drawable.add),
-                contentDescription = "add",
-                modifier = Modifier.size(24.dp)
+        Button(
+            onClick = onNavigateToSecondScreen,
+            colors = ButtonDefaults.buttonColors(Darkblue),
+            border= BorderStroke(2.dp,Color.Black)
+        ){
+            Icon(
+                imageVector = Icons.Filled.Add,
+                contentDescription = "Add",
+                modifier = Modifier.size(25.dp),
+                tint = Navyblue
             )
             Spacer(modifier = Modifier.width(16.dp))
-            Text("add/edit task",
-                style = MaterialTheme.typography.headlineSmall)
+            Text(
+                text = "add/edit task",
+                style = MaterialTheme.typography.headlineSmall,
+                fontWeight = FontWeight.Bold,
+                color = Navyblue
+            )
+        }
+        Spacer(modifier = Modifier.height(20.dp))
 
+/* break //////////////////////////////////////////////// */
+
+        Row(
+            modifier = Modifier
+                .fillMaxWidth(),
+            verticalAlignment = Alignment.Top
+        ) {
+
+            Icon(
+                imageVector = Icons.Filled.CalendarMonth,
+                contentDescription = "Upcoming Assignments Calendar",
+                modifier = Modifier.size(150.dp),
+                tint = Navyblue
+            )
+
+            Spacer(modifier = Modifier.width(16.dp))
+
+            Column(
+                modifier = Modifier.weight(1f),
+                verticalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier
+                        .background(VeryLightblue)
+                        .border(1.5.dp, Color.Black)
+                        .padding(horizontal = 12.dp, vertical = 6.dp)
+                ) {
+                    Text(
+                        text = "Upcoming Assignments",
+                        style = MaterialTheme.typography.headlineSmall,
+                        textAlign = TextAlign.Center,
+                        fontSize = 25.sp,
+                        color = Color.Black
+                    )
+                }
+
+                Column(
+                    modifier = Modifier.padding(start = 8.dp),
+                    verticalArrangement = Arrangement.spacedBy(4.dp)
+                ) {
+                    Text(text = "• Lab 10 CSS 304",
+                        style = MaterialTheme.typography.headlineLarge,
+                        color = Color.Black,
+                        fontSize = 20.sp)
+                    Text(text = "• Quiz 10 CSS 424",
+                        style = MaterialTheme.typography.headlineLarge,
+                        color = Color.Black,
+                        fontSize = 20.sp)
+                }
+            }
+        }
+
+        Spacer(modifier = Modifier.height(90.dp))
+/* break //////////////////////////////////////////////// */
+
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(150.dp)
+                .background(Lightblue)
+                .border(1.5.dp, Color.Black),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            // Home
+            Column(
+                modifier = Modifier.weight(1f),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
+            ) {
+                Icon(Icons.Filled.Home, contentDescription = "Homenavigation", modifier = Modifier.size(70.dp), tint = Navyblue)
+                Text(text = "Home", fontSize = 16.sp, fontWeight = FontWeight.Bold, color = Navyblue)
+            }
+
+            // Tasks
+            Column(
+                modifier = Modifier.weight(1f),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
+            ) {
+                Icon(Icons.Filled.CheckCircle, contentDescription = "tasks", modifier = Modifier.size(70.dp), tint = Navyblue)
+                Text(text = "Tasks", fontSize = 16.sp, fontWeight = FontWeight.Bold, color = Navyblue)
+            }
+
+            // Calendar
+            Column(
+                modifier = Modifier.weight(1f),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
+            ) {
+                Icon(Icons.Filled.CalendarMonth, contentDescription = "Calendar", modifier = Modifier.size(70.dp), tint = Navyblue)
+                Text(text = "Calendar", fontSize = 16.sp, fontWeight = FontWeight.Bold, color = Navyblue)
+            }
+
+            // Academics
+            Column(
+                modifier = Modifier.weight(1f),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
+            ) {
+                Icon(Icons.Filled.AssignmentInd, contentDescription = "Academic", modifier = Modifier.size(70.dp), tint = Navyblue)
+                Text(text = "Academics", fontSize = 16.sp, fontWeight = FontWeight.Bold, color = Navyblue)
+            }
         }
     }
 }
@@ -193,13 +316,13 @@ fun TaskCreation(
     var contentText by remember {mutableStateOf("")}
 
     Column(
-        modifier = Modifier.fillMaxSize().padding(innerPadding).background(Color.White),
+        modifier = Modifier.fillMaxSize().padding(innerPadding).padding(16.dp).background(Color.White),
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.Start
     ) {
         Row(
             modifier = Modifier.fillMaxWidth()
-            .background(Color(0xFFADC6FF))
+            .background(Lightblue)
             .border(1.dp, Color.Black)
             .padding(16.dp),
             verticalAlignment = Alignment.CenterVertically
@@ -219,13 +342,16 @@ fun TaskCreation(
                     modifier = Modifier.fillMaxWidth().testTag("title_input")
                 )
             }
-            IconButton(onClick = onBackToHome) {
+            IconButton(onClick = onBackToHome,
+                modifier = Modifier.testTag("save_button")) {
+
                 Icon(
-                    painter = painterResource(id = R.drawable.checkmark),
+                    imageVector = Icons.Filled.CheckCircle,
                     contentDescription = "Save",
                     modifier = Modifier.size(40.dp),
-                    tint = Color(0xFF0D1B2A)
+                    tint = Navyblue
                 )
+
             }
         }
         Box(
@@ -246,33 +372,37 @@ fun TaskCreation(
                 onValueChange = {contentText = it},
                 textStyle = MaterialTheme.typography.displayMedium.copy(color = Color.Black),
                 modifier = Modifier.fillMaxSize()
+                    .border(1.dp, Color.LightGray)
+                    .padding(12.dp)
             )
-
         }
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(Color(0xFFD1E1FF))
+                .background(VeryLightblue)
                 .border(1.dp, Color.Black)
         ){
             TaskCustom(
                 label = "Set deadline",
                 value = "03/25/2026",
-                iconId = R.drawable.calendar_date
+                icon = Icons.Filled.DateRange
             )
             Box(modifier = Modifier.fillMaxWidth().height(1.dp).background(Color.Black))
-
             TaskCustom(
                 label = "Set Identifier",
                 value ="Add Icon",
-                iconId = R.drawable.arrow
+                icon = Icons.Filled.ArrowDropDown
             )
         }
     }
 }
 
 @Composable
-fun TaskCustom(label: String, value: String, iconId: Int) {
+fun TaskCustom(
+    label: String,
+    value: String,
+    icon: ImageVector
+) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -285,7 +415,6 @@ fun TaskCustom(label: String, value: String, iconId: Int) {
             style = MaterialTheme.typography.titleLarge,
             fontWeight = FontWeight.Bold
         )
-
         Row(
             modifier = Modifier
                 .border(1.dp, Color.Black)
@@ -298,15 +427,15 @@ fun TaskCustom(label: String, value: String, iconId: Int) {
             )
             Box(
                 modifier = Modifier
-                    .background(Color(0xFF89AFFA))
+                    .background(Darkblue)
                     .border(1.dp, Color.Black)
                     .padding(4.dp)
             ) {
                 Icon(
-                    painter = painterResource(id = iconId),
+                    imageVector = icon, // 2. Active property changed to imageVector
                     contentDescription = "icons",
                     modifier = Modifier.size(24.dp),
-                    tint = Color.Unspecified
+                    tint = Navyblue
                 )
             }
         }
@@ -316,7 +445,7 @@ fun TaskCustom(label: String, value: String, iconId: Int) {
 @Preview(showBackground = true)
 @Composable
 fun PreviewHomeScreen() {
-    AssignMateGuideTheme() {   //***Change this to your theme name if different
+    AssignMateGuideTheme() {
         HomeScreen(
             innerPadding = PaddingValues(0.dp),
             onNavigateToSecondScreen = {}
@@ -329,7 +458,7 @@ fun PreviewHomeScreen() {
 @Preview(showBackground = true)
 @Composable
 fun PreviewSecondScreen() {
-    AssignMateGuideTheme {   //***Change this to your theme name if different
+    AssignMateGuideTheme {
         TaskCreation(
             innerPadding = PaddingValues(0.dp),
             onBackToHome = {}

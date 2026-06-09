@@ -3,21 +3,21 @@ package com.example.assignmateguide
 import androidx.compose.ui.test.hasTestTag
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
-import androidx.compose.ui.test.onNodeWithContentDescription
+import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performTextInput
 import org.junit.Rule
 import org.junit.Test
 
-class ExampleUnitTest {
+class ExampleInstrumentedTest {
 
     @get:Rule
     val composeTestRule = createComposeRule()
 
     @Test
     fun testTypingAndScreenNavigation() {
-
+        // Start the app hierarchy structure
         composeTestRule.setContent {
             MyApp()
         }
@@ -26,7 +26,7 @@ class ExampleUnitTest {
 
         composeTestRule.onNode(hasTestTag("title_input")).performTextInput("Testing Input")
 
-        composeTestRule.onNodeWithContentDescription("Save").performClick()
+        composeTestRule.onNodeWithTag("save_button").performClick()
 
         composeTestRule.onNodeWithText("Diego Lozano").assertIsDisplayed()
     }
