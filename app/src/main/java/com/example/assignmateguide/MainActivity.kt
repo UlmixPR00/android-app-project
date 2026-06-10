@@ -114,7 +114,8 @@ fun HomeScreen(
                 Icon(
                     imageVector = Icons.Filled.Home,
                     contentDescription = "Home",
-                    modifier = Modifier.size(100.dp)
+                    modifier = Modifier.size(100.dp),
+                    tint = Navyblue
                 )
             }
             Spacer(modifier = Modifier.width(16.dp))
@@ -269,7 +270,7 @@ fun HomeScreen(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
             ) {
-                Icon(Icons.Filled.Home, contentDescription = "Homenavigation", modifier = Modifier.size(70.dp), tint = Navyblue)
+                Icon(Icons.Filled.Home, contentDescription = "Home", modifier = Modifier.size(70.dp), tint = Navyblue)
                 Text(text = "Home", fontSize = 16.sp, fontWeight = FontWeight.Bold, color = Navyblue)
             }
 
