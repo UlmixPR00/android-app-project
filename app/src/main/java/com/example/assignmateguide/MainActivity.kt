@@ -220,7 +220,6 @@ fun HomeScreen(
                 modifier = Modifier.weight(1f),
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier
